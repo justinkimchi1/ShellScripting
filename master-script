@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "Starting process..."
+
+# call package installing script
+echo "Installing packages..."
+./install-packages.sh
+
+# call symlink script
+echo "Calling configuration files"
+./symlink-script.sh
+
+echo "System set up is complete!"
+
+

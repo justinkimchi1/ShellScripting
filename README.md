@@ -1,6 +1,6 @@
 # Shell Scripting Assignment
  
-This assignment consists of two parts - Project 1 and Project 2
+This assignment consists of two parts - **Project 1** and **Project 2**
 
 **Project 1 - System Setup Scripts**
 **Project 1 - System Setup Scripts**

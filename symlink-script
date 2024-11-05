@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# ensure the required directory structure exists (~/bin, ~/.config)
+# create symbolic links from config files in repo to our directory
+# clone the config files from the repo 
+# manage the existing files by skipping or overwriting
+
+# use mkdir with -p to create the directory if it doesn't exist
+mkdir -p ~/bin
+mkdir -p ~/.config/kak
+mkdir -p ~/.config/tmux
+
+# cloning the repo files
+repo_link="https://gitlab.com/cit2420/2420-as2-starting-files.git"
+git clone "$repo_link"
+
+# check if the cloning is successful by seeing if the exit code is equal to 0
+if [[ $? -eq 0 ]]; then
+  echo "Git cloning has been successful"
+  # create the symlinks if the cloning is successful
+  ln -s something ~/bin/sayhi
+  ln -s something ~/bin/install-fonts
+  ln -s something ~/.config/kak/kakrc
+  ln -s something ~/.config/tmux/tmux.conf
+  ln -s something ~/.bashrc
+
+else
+  echo "Error while cloning from repo"
+fi
+
+

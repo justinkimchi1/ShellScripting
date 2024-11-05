@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# let the user know that we are starting the installing process
+echo "Installing Packages..."
+
+# turn our list into a variable so it is easier to work with
+package_list="package-file.txt"
+
+# check if the package list exists with -f
+if [[ -f "$package_list" ]]; then
+  
+  # installs packages from a saved list of packages while not reinstalling previously installed packages (https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#List_of_installed_packages)
+  pacman -S --needed - < "$package_list"
+
+  # if the pacman exit code is equal to 0....
+  if [[ $? -eq 0 ]]; then
+    echo "Packages have been installed successfully!"
+  else
+    echo "There has been an error while installing packages"
+  fi
+else
+  echo "The "$package_list" file could not be found"
+fi
