@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# source = (https://www.freecodecamp.org/news/how-to-manage-users-in-linux/)
 # $(id -u) specifies the current user. If we wrote just $(id) it will go through all the user ids
 # -ne means not equal to, so -ne 0 is saying if the user id is not equal to 0 (which is the root users id) then we do next step
 # if user id is not 0, then we tell the user that they need higher privleges to run the script and we exit with the status code 1 which indicates an error
