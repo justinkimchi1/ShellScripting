@@ -2,7 +2,7 @@
 
 # ensure the required directory structure exists (~/bin, ~/.config)
 # create symbolic links from config files in repo to our directory
-# clone the config files from the repo 
+# clone the config files from the repo
 # manage the existing files by skipping or overwriting
 
 # use mkdir with -p to create the directory if it doesn't exist. -p stands for parents and it creates a directory and any necessary parent directories that do not exist. This helps us create nested directories in one command
@@ -10,40 +10,50 @@ mkdir -p ~/bin
 mkdir -p ~/.config/kak
 mkdir -p ~/.config/tmux
 
-# cloning the repo files into a directory called config_repo
+# we turn the repository link and config_repo into variables so they are easier to work with
 repo_link="https://gitlab.com/cit2420/2420-as2-starting-files.git"
-git clone "$repo_link" config_repo
+config_repo="config_repo"
 
-# check if the cloning is successful by seeing if the exit code is equal to 0
-if [[ $? -eq 0 ]]; then
-  echo "Git cloning has been successful"
-  # create symlink function if the cloning is successful
-  create_symlink() {
-    path_to_folder=$1
-    symlink_location=$2
-
-    # source = https://www.gnu.org/software/bash/manual/bash.html
-    # the -L checks if the file exists and is a symbolic link, so we check if our_location is a symbolic link
-    if [[ -L "$1" ]]; then
-      echo "Symbolic link $1 already exists"
-    else
-      # if the symlink doesnt exist, we take in the two paths from the arguments and we create the symlink
-      # ln is the command used to create links, and we specify a softlink with -s
-      ln -s "$path_to_folder" "$symlink_location"
-      echo "Created symlink for $path_to_folder"
-    fi
-
-  }
-  # create all the symlinks using our symlink function
-  create_symlink ~/config_repo/bin/sayhi ~/bin/sayhi
-  create_symlink ~/config_repo/bin/install-fonts ~/bin/install-fonts
-  create_symlink ~/config_repo/config/kak/kakrc ~/.config/kak/kakrc
-  create_symlink ~/config_repo/config/tmux/tmux.conf ~/.config/tmux/tmux.conf
-  create_symlink ~/config_repo/home/bashrc ~/.bashrc
-
-# if cloning isnt successful, we give them an error
+# source = https://www.gnu.org/software/bash/manual/bash.html
+# the -d checks if the config_repo is a file and is a directory and if it is, then we tell them that the repo exists already
+if [[ -d "$config_repo" ]]; then
+  echo "$config_repo directory already exists"
 else
-  echo "Error while cloning from repo"
+  # if the directory doesnt exist, we git clone the repository into the new directory, config_repo
+  git clone "$repo_link" config_repo
+  # check if the cloning is successful by seeing if the exit code is equal to 0
+  if [[ $? -eq 0 ]]; then
+    echo "Cloning successful!"
+  else
+    echo "Error while cloning"
+  fi
 fi
 
+# helper function, create_symlink. Checks if the symlink already exists, and if it doesn't, creates it for us
+create_symlink() {
+  path_to_folder=$1
+  symlink_location=$2
 
+  # source = https://www.gnu.org/software/bash/manual/bash.html
+  # the -L checks if the file exists and is a symbolic link, so we check if our_location is a symbolic link
+  if [[ -L "$2" ]]; then
+    echo "Symbolic link $2 already exists"
+  # source = https://www.gnu.org/software/bash/manual/bash.html
+  # the -e checks if the file exists at the specified path of symlink_location, and if a file exists, we skip it since we do not want to override it
+  elif [[ -e "$2" ]]; then
+    echo "Symbolic link $2 already exists"
+  else
+    # if the symlink doesnt exist, we take in the two paths from the arguments and we create the symlink
+    # ln is the command used to create links, and we specify a softlink with -s
+    ln -s "$path_to_folder" "$symlink_location"
+    echo "Created symlink for $path_to_folder"
+  fi
+
+}
+
+# create all the symlinks using our symlink function
+create_symlink ~/config_repo/bin/sayhi ~/bin/sayhi
+create_symlink ~/config_repo/bin/install-fonts ~/bin/install-fonts
+create_symlink ~/config_repo/config/kak/kakrc ~/.config/kak/kakrc
+create_symlink ~/config_repo/config/tmux/tmux.conf ~/.config/tmux/tmux.conf
+create_symlink ~/config_repo/home/bashrc ~/.bashrc
