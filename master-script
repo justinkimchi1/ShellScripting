@@ -1,15 +1,28 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-echo "Starting process..."
+# get opts. Make it take in 5 options, run package install, run symlink script, run both, show usage, or give user a help message
+# source = https://learning.oreilly.com/videos/bash-shell-scripting/9780137689064/9780137689064-BSS2_04_10_01/ (O'Reilly 10.1 working with options)
 
-# call package installing script
-echo "Installing packages..."
-./install-packages.sh
+# usage function that displays the usage of the script to the user. We exit with exit code 1
+usage() {
+  echo "usage: master-script [-b both scripts] [-p package installer] [ -s symbolic link creator] [-h help]"
+  exit 1
+}
 
-# call symlink script
-echo "Calling configuration files"
-./symlink-script.sh
+helpmessage() {
+  echo "Master-script is a script that allows you to install packages and access configuration files in a remote repository by creating symbolic links to them"
+  echo " -b will run both the package installer and the symbolic link creator script"
+  echo " -p will run the package installer script. Must be run with root privileges"
+  echo " -s will run the symbolic link creator script"
+  echo " -h displays this help message"
+}
 
-echo "System set up is complete!"
-
-
+while getopts "bpsh" opt; do
+  case $opt in
+    b) ./package-installer.sh && ./symlink-script.sh ;;
+    p) ./package-installer.sh ;;
+    s) ./symlink-script.sh ;;
+    h) helpmessage ;;
+    *) usage ;;
+  esac
+done
