@@ -1,6 +1,3 @@
-#!/bin/bash
-
-# Development Tools
 neovim
 kakuone
 tmux
