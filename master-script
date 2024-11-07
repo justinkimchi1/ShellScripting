@@ -41,7 +41,8 @@ while getopts "bpsh" opt; do
     # displays the help message function
     h) helpmessage ;;
     # displays the usage function
-    *) usage ;;
+    *) echo "Invalid option $OPTARG"
+    usage ;;
   esac
 done
 
