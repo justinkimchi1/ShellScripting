@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-# ensure the required directory structure exists (~/bin, ~/.config)
-# create symbolic links from config files in repo to our directory
-# clone the config files from the repo 
-# manage the existing files by skipping or overwriting
+# sources:
+# https://www.gnu.org/software/bash/manual/bash.html [1]
+# https://www.tutorialspoint.com/unix/unix-special-variables.htm [2]
+# https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-clone [3]
 
 # set username of the user who uses this file so we can use their username in the paths when we create symlinks
 user=$1
@@ -18,15 +18,14 @@ mkdir -p /home/$user/.config/tmux
 repo_link="https://gitlab.com/cit2420/2420-as2-starting-files.git"
 config_repo="/home/$user/config_repo"
 
-# source = https://www.gnu.org/software/bash/manual/bash.html
-# the -d checks if the config_repo is a file and is a directory and if it is, then we tell them that the repo exists already
+# the -d checks if the config_repo is a file and is a directory and if it is, then we tell them that the repo exists already [1]
 if [[ -d "$config_repo" ]]; then 
   echo "$config_repo directory already exists"
 else
-  # if the directory doesnt exist, we git clone the repository into the new directory, config_repo
+  # if the directory doesnt exist, we git clone the repository into the new directory, config_repo [3]
   git clone "$repo_link" "$config_repo"
-  # $? "The exit status of the last command executed." (https://www.tutorialspoint.com/unix/unix-special-variables.htm)
-  # check if the cloning is successful by seeing if the exit code is equal to (-eq) 0. If the exit status of a command is equal to 0 it means that the command was executed successfully.
+  # $? "The exit status of the last command executed." [2]
+  # check if the cloning is successful by seeing if the exit code is equal to (-eq) 0. If the exit status of a command is equal to 0 it means that the command was executed successfully. [1]
   if [[ $? -eq 0 ]]; then
     echo "Cloning successful!"
   else
@@ -39,8 +38,7 @@ create_symlink() {
   path_to_folder=$1
   symlink_location=$2
 
-  # source = https://www.gnu.org/software/bash/manual/bash.html
-  # the -e checks if the file exists at the specified path of symlink_location, and if a file exists, we skip it since we do not want to override it
+  # the -e checks if the file exists at the specified path of symlink_location, and if a file exists, we skip it since we do not want to override it [1]
   if [[ -e "$2" ]]; then
     echo "Symbolic link $2 already exists"
   else
