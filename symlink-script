@@ -4,6 +4,15 @@
 # https://www.gnu.org/software/bash/manual/bash.html [1]
 # https://www.tutorialspoint.com/unix/unix-special-variables.htm [2]
 # https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-clone [3]
+# https://www.baeldung.com/linux/bash-check-script-arguments#:~:text=Check%20Whether%20No%20Arguments%20Are,may%20miss%20the%20arguments%20completely.&text=The%20%24%23%20variable%20gives%20us,its%20two%20operands%20is%20equal.[4]
+# https://www.digitalocean.com/community/tutorials/read-command-line-arguments-in-shell-scripts [5]
+
+# "$#" is a special character that stores the number of arguments [5]
+# if the script is not provided a user for the argument, then we tell the user that they need to give us their user
+if [[ "$#" -ne 1 ]]; then
+  echo "You must provide your user with the script!"
+  exit 1
+fi
 
 # set username of the user who uses this file so we can use their username in the paths when we create symlinks
 user=$1

@@ -13,14 +13,14 @@ user=$SUDO_USER
 
 # usage function that displays the usage of the script to the user. We exit with exit code 1 
 usage() {
-  echo "usage: master-script [-b both scripts] [-p package installer] [ -s symbolic link creator] [-h help]"
+  echo "usage: master-script [-b both scripts] [-p package installer] [-s symbolic link creator] [-h help]"
   exit 1
 }
 
 # help message function that displays help message of each option and what they do
 helpmessage() {
-  echo "Master-script is a script that allows you to install packages and access configuration files in a remote repository by creating symbolic links to them. Must be run with root privileges"
-  echo " -b will run both the package installer and the symbolic link creator script"
+  echo "Master-script is a script that allows you to install packages and access configuration files in a remote repository by creating symbolic links to them"
+  echo " -b will run both the package installer and the symbolic link creator script. Must be run with root privileges"
   echo " -p will run the package installer script. Must be run with root privileges"
   echo " -s will run the symbolic link creator script"
   echo " -h displays this help message"
