@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# description: installs a list of packages that is required for the configuration setup
+
 # source:
 # https://www.freecodecamp.org/news/how-to-manage-users-in-linux/ [1]
 # https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#List_of_installed_packages [2]

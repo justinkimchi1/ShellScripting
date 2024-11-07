@@ -45,6 +45,8 @@ tmux
 ```
 #!/usr/bin/env bash
 
+# description: installs a list of packages that is required for the configuration setup
+
 # source:
 # https://www.freecodecamp.org/news/how-to-manage-users-in-linux/ [1]
 # https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#List_of_installed_packages [2]
@@ -102,6 +104,8 @@ Once you get a message saying **Packages have been installed successfully**, you
 
 ```
 #!/usr/bin/env bash
+
+# description: Create symbolic links for configuration files in a remote repository to help set up the environment
 
 # sources:
 # https://www.gnu.org/software/bash/manual/bash.html [1]

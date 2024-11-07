@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# description: Create symbolic links for configuration files in a remote repository to help set up the environment
+
 # sources:
 # https://www.gnu.org/software/bash/manual/bash.html [1]
 # https://www.tutorialspoint.com/unix/unix-special-variables.htm [2]

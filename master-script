@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# description: coordinates the setup of the new system by calling the package installer and symbolic link creation scripts
+
 # get opts. Make it take in 5 options, run package install, run symlink script, run both, show usage, or give user a help message
 
 # sources: 
