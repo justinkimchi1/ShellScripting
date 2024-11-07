@@ -11,10 +11,10 @@ This assignment consists of two parts - **Project 1** and **Project 2**
 
 ## Table of Contents
 
-- [Project 1 - System Setup Scripts](#project-1)
-    - [Scripts Overview](#script-overview)
+- [Project 1 - System Setup Scripts](#project-1-system-setup-scripts)
+    - [Scripts Overview](#scripts-overview)
     - [Usage Instructions](#usage-instructions)
-- [Project 2 - User Creation Scripts](#project-2)
+- [Project 2 - User Creation Scripts](#project-2-user-creation-scripts)
     - [Script Overview](#script-ov)
     - [Usage Instructions](#usage-intructions)
 - [Sources](#sources)
