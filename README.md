@@ -49,14 +49,13 @@ tmux
 
 # source:
 # https://www.freecodecamp.org/news/how-to-manage-users-in-linux/ [1]
-# https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#List_of_installed_packages [2]
+# https://wiki.archlinux.org/title/PacmanTips_and_tricks#List_of_installed_packages [2]
 # https://www.gnu.org/software/bash/manual/bash.html [3]
 # https://dev.to/rpalo/bash-brackets-quick-reference-4eh6 [4]
 # https://ss64.com/bash/syntax-file-operators.html [5]
 
 # we use the dollar sign parentheses to get the current user running the script. If we just used id, then it would go through the whole list of user id's [4]
-# -ne means not equal to, so -ne 0 is saying if the user id is not equal to 0 (which is the root users id) then we do
-# next step [1][3] 
+# -ne means not equal to, so -ne 0 is saying if the user id is not equal to 0 (which is the root users id) then we do next step [1][3] 
 # if user id is not 0, then we tell the user that they need higher privleges to run the script and we exit with the status code 1 which indicates an error [3]
 if [[ $(id -u) -ne 0 ]]; then
   echo "You have to be root user or use sudo to run this script"
@@ -182,7 +181,7 @@ create_symlink /home/$user/config_repo/home/bashrc /home/$user/.bashrc
 ```
 whoami
 ```
-Once you get a multiple message saying **Created symlink for < Path >**, then you have successfully created symbolic links to the configuration files!
+Once you get multiple messages saying **Created symlink for < Path >**, then you have successfully created symbolic links to the configuration files!
 
 ---
 `master-script.sh`:

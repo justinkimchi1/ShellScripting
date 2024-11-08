@@ -29,7 +29,7 @@ helpmessage() {
 }
 
 # we use getopts to get options of either b, p, s, h. If we get those options, we specify in the code block below what each option will do. [1]
-while getopts "bpsh" opt; do
+while getopts ":bpsh" opt; do
   # case is used to take in a specific number of cases, in this case bpsh and *
   case $opt in
     # runs both scripts 

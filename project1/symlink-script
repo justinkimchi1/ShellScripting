@@ -19,7 +19,7 @@ fi
 # set username of the user who uses this file so we can use their username in the paths when we create symlinks
 user=$1
 
-# use mkdir with -p to create the directory if it doesn't exist. -p stands for parents and it creates a directory and any necessary parent directories that do not exist. This helps us create nested directories in one command
+# use mkdir with -p to create the directory if it doesn't exist. -p stands for parents and it creates a directory and any necessary parent directories that do not exist. This helps us create nested directories in one command [1]
 mkdir -p /home/$user/bin
 mkdir -p /home/$user/.config/kak
 mkdir -p /home/$user/.config/tmux
