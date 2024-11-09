@@ -10,22 +10,26 @@ This assignment consists of two parts - **Project 1** and **Project 2**
 
 ## Table of Contents
 
-- [Project 1 - System Setup Scripts](#project-1-system-setup-scripts)
-    - [Scripts Overview](#scripts-overview)
-    - [Usage Instructions](#usage-instructions)
-- [Project 2 - User Creation Scripts](#project-2-user-creation-scripts)
-    - [Usage Instructions](#usage-instructions)
-- [Sources](#sources)
+- [Project 1 - System Setup Scripts](#1)
+    - [Scripts Overview](#2)
+    - [Usage Instructions](#3)
+- [Project 2 - User Creation Scripts](#4)
+    - [Usage Instructions](#5)
+- [Sources](#6)
 
+
+<a id="1"></a>
 ## Project 1 - System Setup Scripts
 Project 1 deals with creating configuration scripts that help with the system setup of a new system. Configuration scripts are important as they allow us to streamline the setup process. 
 
+<a id="2"></a>
 ### Scripts Overview
 In this project, we will be creating three scripts:
 - `package-installer.sh` - Install a list of packages that is required for the configuration setup
 - `symlink-script.sh` - Create symbolic links for the configuration files in the repository to help set up the environment
 - `master-script.sh` - Coordinates the setup by calling the two scripts
 
+<a id="3"></a>
 ## Usage Instructions
 `package-installer.sh`:
 
@@ -266,8 +270,11 @@ sudo ./master-script.sh -b # this will run both scripts
 ```
 Now you know how to use the master script!
 
+<a id="4"></a>
 ## Project 2 - User Creation Scripts
 In this part of the assignment, we created a user creation script that will allow users to create new users with a specified shell, home directory with /etc/skel contents copied into it, and allow the user to be added to addtional groups.
+
+<a id="5"></a>
 
 ### Usage Instructions
 `new-user-script`:
@@ -439,6 +446,7 @@ sudo ./new-user-script.sh -u joe -s /bin/zsh -g "wheel project cheese" -c "Admin
 
 Congratulations! You now know how to use the `new-user-script.sh` script!
 
+<a id="6"></a>
 ## Sources
 1. Baeldung. "Identify User Called by Sudo." https://www.baeldung.com/linux/identify-user-called-by-sudo
 2. Baeldung. "Bash Check Script Arguments." https://www.baeldung.com/linux/bash-check-script-arguments#:~:text=Check%20Whether%20No%20Arguments%20Are,may%20miss%20the%20arguments%20completely.&text=The%20%24%23%20variable%20gives%20us,its%20two%20operands%20is%20equal.
