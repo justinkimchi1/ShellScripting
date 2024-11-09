@@ -10,6 +10,9 @@
 # https://www.gnu.org/software/coreutils/manual/html_node/The-cut-command.html [5]
 # https://www.gnu.org/software/grep/manual/grep.html [6]
 # https://learning.oreilly.com/library/view/linux-for-system/9781803247946/B18575_07.xhtml#_idParaDest-105 [7]
+# https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html [8]
+# https://www.cyberciti.biz/faq/linux-append-text-to-end-of-file/ [9]
+# https://learning.oreilly.com/library/view/linux-for-system/9781803247946/B18575_07.xhtml [10]
 
 # default shell
 shell="/bin/bash"
@@ -43,6 +46,7 @@ while getopts ":u:s:g:c:h" opt; do
     c) comments="$OPTARG"
       ;;
     h) helpmessage
+        exit 0
       ;;
     :) exit 1
       ;;
@@ -51,10 +55,12 @@ while getopts ":u:s:g:c:h" opt; do
   esac
 done
 
-# check if they supplied a username
+# check if they supplied a username [8]
 if [[ -z "$username" ]]; then
+  # tell user that they need to enter a username, show them the help message and we exit with exit code 1 which indicates an error
   echo "You must enter a username"
   helpmessage
+  exit 1
 fi
 
 # loop through the user id until we find a unique uid. Source [4]
@@ -74,22 +80,45 @@ done
 # assign GID based on UID (they should be the same)
 group_id="$user_id"
 
+# we check if the user gives us an input for comments with -z which is true if the length of the string is 0 [8]
+# if no input for comments, we set the default to "regular user"
+if [[ -z "$comments" ]]; then
+    comments="Regular User"
+fi
 
 # create home directory path
 home_dir="/home/$username"
 
+# creating the primary group of the user by appending the string with >> to /etc/group (where all groups are located) [9][10]
+echo "$username:x:$group_id:" >> /etc/group
 
-# adding user to /etc/passwd (where all users are located)
+# adding user to /etc/passwd (where all users are located) [9][10]
 echo "$username:x:$user_id:$group_id:$comments:$home_dir:$shell" >> /etc/passwd
 
 
-# adding user to the /etc/shadow
-echo "$username:x::::::" >> /etc/shadow
+# adding user to the /etc/shadow (where the encrypted passwords are) [9][10]
+echo "$username::::::::" >> /etc/shadow
 
 
 # create their home directory and copy /etc/skel into it
 mkdir -p "$home_dir"
 cp -r /etc/skel/. "$home_dir"
 
+# give permissions 
+chown -R "$user_id:$group_id" "$home_dir"
+chmod 700 "$home_dir"
+
+# loop through the groups
+for group in "${groups[@]}"; do
+
+    if grep -q "^$group:" /etc/group; then
+
+        sed -i "/^$group:/ s/$/,$username/" /etc/group
+    else
+        echo "$group doesn't exist!"
+    fi
+done
+
 # add a password to user
 passwd $username
+

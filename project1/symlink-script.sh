@@ -67,4 +67,3 @@ create_symlink /home/$user/config_repo/bin/install-fonts /home/$user/bin/install
 create_symlink /home/$user/config_repo/config/kak/kakrc /home/$user/.config/kak/kakrc
 create_symlink /home/$user/config_repo/config/tmux/tmux.conf /home/$user/.config/tmux/tmux.conf
 create_symlink /home/$user/config_repo/home/bashrc /home/$user/.bashrc
-

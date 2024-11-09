@@ -15,7 +15,6 @@ This assignment consists of two parts - **Project 1** and **Project 2**
     - [Scripts Overview](#scripts-overview)
     - [Usage Instructions](#usage-instructions)
 - [Project 2 - User Creation Scripts](#project-2-user-creation-scripts)
-    - [Script Overview](#script-ov)
     - [Usage Instructions](#usage-intructions)
 - [Sources](#sources)
 
@@ -269,3 +268,13 @@ sudo ./master-script.sh -b # this will run both scripts
 Now you know how to use the master script!
 
 ## Project 2 - User Creation Scripts
+In this part of the assignment, we created a user creation script that will allow users to create new users with a specified shell, home directory with /etc/skel contents copied into it, and allow the user to be added to addtional groups.
+
+### Usage Instructions
+`new-user-script`:
+1. Import the script into your directory:
+```
+
+```
+
+2. 
