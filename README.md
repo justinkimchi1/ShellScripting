@@ -314,19 +314,26 @@ echo "-h will display the help messsage"
 # getopts function that takes in our arguments from user [4]
 while getopts ":u:s:g:c:h" opt; do
   case $opt in
+    # sets the name of the new user
     u) username="$OPTARG"
       ;;
+    # sets the shell for the new user
     s) shell="$OPTARG"
       ;;
+    # name of groups the user is added to
     g) groups="$OPTARG"
       ;;
+    # any additional information of the new user
     c) comments="$OPTARG"
       ;;
+    # help message function
     h) helpmessage
         exit 0
       ;;
+    # exits if no argument is provided
     :) exit 1
       ;;
+    # exits script if they type an option that is not part of the options 
     ?) exit 1
       ;;
   esac
@@ -415,4 +422,40 @@ fi
 passwd $username
 ```
 
-2. 
+2. You **Must** run the script with root privileges or with sudo. You can run the script with this:
+```
+sudo ./new-user-script.sh < options >
+```
+Options for the script:
+- -u: < username > the name of the new user
+- -s: < shell > a specified shell, by default the new user has bash shell
+- -g: < "group1 group2 group3" > adds user to additional groups 
+- -c: < "comments" > adds any additional information about the new user
+- -h: displays the help message to use this script
+
+Example usage:
+```
+sudo ./new-user-script.sh -u joe -s /bin/zsh -g "wheel project cheese" -c "Admin User"
+```
+
+Congratulations! You now know how to use the `new-user-script.sh` script!
+
+## Sources
+1. Baeldung. "Identify User Called by Sudo." https://www.baeldung.com/linux/identify-user-called-by-sudo
+2. Baeldung. "Bash Check Script Arguments." https://www.baeldung.com/linux/bash-check-script-arguments#:~:text=Check%20Whether%20No%20Arguments%20Are,may%20miss%20the%20arguments%20completely.&text=The%20%24%23%20variable%20gives%20us,its%20two%20operands%20is%20equal.
+3. CyberCiti. "Append Text to End of File in Linux." https://www.cyberciti.biz/faq/linux-append-text-to-end-of-file/
+4. dev.to. "Bash Brackets Quick Reference." https://dev.to/rpalo/bash-brackets-quick-reference-4eh6
+5. DigitalOcean. "Read Command Line Arguments in Shell Scripts." https://www.digitalocean.com/community/tutorials/read-command-line-arguments-in-shell-scripts
+6. FreeCodeCamp. "How to Manage Users in Linux." https://www.freecodecamp.org/news/how-to-manage-users-in-linux/
+7. GNU. "Bash Manual." https://www.gnu.org/software/bash/manual/bash.html
+8. GNU. "Coreutils Manual: The Cut Command." https://www.gnu.org/software/coreutils/manual/html_node/The-cut-command.html
+9. GNU. "Grep Manual." https://www.gnu.org/software/grep/manual/grep.html
+10. GNU. "Sed Manual." https://www.gnu.org/software/sed/manual/sed.html
+11. IBM. "Getopts: Parse Utility Options." https://www.ibm.com/docs/en/zos/2.4.0?topic=descriptions-getopts-parse-utility-options
+12. O'Reilly. *Bash Shell Scripting* (Video). "Working with Options (10.1)." https://learning.oreilly.com/videos/bash-shell-scripting/9780137689064/9780137689064-BSS2_04_10_01/
+13. O'Reilly. *Linux for System Administrators.* https://learning.oreilly.com/library/view/linux-for-system/9781803247946/B18575_07.xhtml
+14. SS64. "Bash File Operators." https://ss64.com/bash/syntax-file-operators.html
+15. The Linux Documentation Project. "Bash Beginners Guide: Section 7.1." https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html
+16. Tutorialspoint. "Unix Special Variables." https://www.tutorialspoint.com/unix/unix-special-variables.htm
+17. ArchWiki. "Pacman Tips and Tricks: List of Installed Packages." https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#List_of_installed_packages
+18. Atlassian. "Setting Up a Repository with Git Clone." https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-clone

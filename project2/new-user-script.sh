@@ -38,19 +38,26 @@ echo "-h will display the help messsage"
 # getopts function that takes in our arguments from user [4]
 while getopts ":u:s:g:c:h" opt; do
   case $opt in
+    # sets the name of the new user
     u) username="$OPTARG"
       ;;
+    # sets the shell for the new user
     s) shell="$OPTARG"
       ;;
+    # name of groups the user is added to
     g) groups="$OPTARG"
       ;;
+    # any additional information of the new user
     c) comments="$OPTARG"
       ;;
+    # help message function
     h) helpmessage
         exit 0
       ;;
+    # exits if no argument is provided
     :) exit 1
       ;;
+    # exits script if they type an option that is not part of the options 
     ?) exit 1
       ;;
   esac
